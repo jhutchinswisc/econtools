@@ -98,6 +98,11 @@ _fips_to_name_xwalk = {
     54: 'West Virginia',
     55: 'Wisconsin',
     56: 'Wyoming',
+    60: 'American Samoa',
+    66: 'Guam',
+    69: 'Northern Mariana',
+    72: 'Puerto Rico',
+    78: 'Virgin Islands',
 }
 
 _name_to_fips_xwalk = {v: k
@@ -165,3 +170,9 @@ _state_abbr_to_name = {
 
 _state_name_to_abbr = {v: k
                        for k, v in _state_abbr_to_name.items()}
+
+state_fips_list = tuple(_fips_to_name_xwalk.keys())
+
+state_names_list = tuple(_fips_to_name_xwalk.values())
+
+state_abbr_list = tuple(_state_abbr_to_name.keys())

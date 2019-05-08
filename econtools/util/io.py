@@ -21,7 +21,6 @@ PICKLE_EXT = ('pkl', 'p')   # First is default for writing to pickle
 HDF5_EXT = ('h5', 'hdf5')
 
 
-# TODO: lob tests
 def load_or_build(raw_filepath, copydta=False, path_args=[]):
     """Loads `raw_filepath` as a DataFrame if it exists, otherwise builds the
     data and saves it to `raw_filepath`.
@@ -377,7 +376,7 @@ def force_valid_response(prompt_str, good_answers, listin=False, dtype=None,
 
     # Py2/Py3 compat check
     if IS_PY2:
-        ans = raw_input(prompt_str)     # noqa
+        ans = raw_input(prompt_str)
     else:
         ans = input(prompt_str)
 
@@ -400,7 +399,7 @@ def force_valid_response(prompt_str, good_answers, listin=False, dtype=None,
     return output
 
 def _parse_list_input(inp, dtype):
-    inp = re.sub('\s\s+', ' ', inp)
+    inp = re.sub(r'\s\s+', ' ', inp)
     list_inp = inp.split(' ')
     if dtype:
         list_inp = map(dtype, list_inp)

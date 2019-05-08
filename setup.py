@@ -5,13 +5,14 @@ def readme():
     with open('README.md') as f:
         return f.read()
 
+
 dependencies = [
     'numpy>=1.9.2',
     'pandas>=0.16.0',
 ]
 
 setup(name='econtools',
-      version='0.0.1',
+      version='0.1.1',
       description='Econometrics and other tools',
       long_description=readme(),
       # url=
@@ -20,9 +21,8 @@ setup(name='econtools',
       packages=find_packages(),
       # install_requires=dependencies,
       tests_require=[
-          'nose',
+          'pytest',
       ],
-      test_suite='nose.collector',
       include_package_data=True,        # To copy stuff in `MANIFEST.in`
       # dependency_links=['http://
       # zip_safe=False

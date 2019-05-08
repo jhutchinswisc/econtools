@@ -8,6 +8,7 @@
     io.rst
     metrics.rst
     to_latex.rst
+    data.rst
     plot.rst
     reference.rst
     api.rst
@@ -37,7 +38,7 @@ Requirements
 * Pandas and its dependencies (Numpy, etc.)
 * Scipy and its dependencies
 * Pytables (optional, if you use HDF5 files)
-* Nose (optional, if you want to run the tests)
+* PyTest (optional, if you want to run the tests)
 
 
 Data (I/O) Tools
