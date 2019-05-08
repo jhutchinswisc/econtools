@@ -47,6 +47,8 @@ class RegBase(object):
 
     def main(self):
         self.set_sample()
+        #if self.check_rank:
+        self.collinearity_check()
         self.estimate()
         self.get_vce()
         self.set_dof()
@@ -98,9 +100,31 @@ class RegBase(object):
         for var in self.vars_in_reg:
             self.__dict__[var] = self.__dict__[var].multiply(row_wt, axis=0)
 
+    def rank_check(self):
+        assert (la.matrix_rank(self.x)==self.x.shape[1]), "ERROR: covariate matrix is not full rank."
+
+    def collinear_cols(self):
+        K = self.x.shape[1]
+        rank_changes = [1]
+    
+        for j in range(2,K+1):
+            rank_changes += [la.matrix_rank(self.x[:,:j])-la.matrix_rank(self.x[:,:j-1])]
+    
+        # Find all the names that do not add to rank (are zero)     
+        return [self.x_name[i] for i, j in enumerate(rank_changes) if j == 0]
+
+    def collinearity_check(self):
+        try:
+            self.rank_check()
+        except AssertionError as error:
+            print(error)
+            print("Collinear columns:", self.collinear_cols())
+
     def estimate(self):
         """ Defined by Implementation. Initializes self.Results object """
         raise NotImplementedError
+
+
 
     def get_vce(self):
         """
