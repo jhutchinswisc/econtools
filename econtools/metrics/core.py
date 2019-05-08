@@ -47,7 +47,6 @@ class RegBase(object):
 
     def main(self):
         self.set_sample()
-        #if self.check_rank:
         self.collinearity_check()
         self.estimate()
         self.get_vce()
@@ -108,7 +107,7 @@ class RegBase(object):
         rank_changes = [1]
     
         for j in range(2,K+1):
-            rank_changes += [la.matrix_rank(self.x[:,:j])-la.matrix_rank(self.x[:,:j-1])]
+            rank_changes += [la.matrix_rank(self.x.iloc[:,:j])-la.matrix_rank(self.x.iloc[:,:j-1])]
     
         # Find all the names that do not add to rank (are zero)     
         return [self.x_name[i] for i, j in enumerate(rank_changes) if j == 0]
